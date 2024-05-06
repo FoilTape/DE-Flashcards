@@ -62,7 +62,22 @@ function updateStar() {
 
 function flipCard() {
     const card = document.querySelector('.card-inner');
+    const flagElement = document.getElementById('languageFlag');
+    const wordElement = document.getElementById('wordText');
+    const translationElement = document.getElementById('translationText');
+    const word = words[currentIndex];
+
     card.classList.toggle('flip');
+
+    if (card.classList.contains('flip')) {
+        // Showing translation
+        translationElement.textContent = currentLanguage === 'de' ? word.english : word.german;
+        flagElement.textContent = currentLanguage === 'de' ? '🇺🇸' : '🇩🇪';
+    } else {
+        // Showing original word
+        wordElement.textContent = currentLanguage === 'de' ? word.german : word.english;
+        flagElement.textContent = currentLanguage === 'de' ? '🇩🇪' : '🇺🇸';
+    }
 }
 
 function resetCardState() {
