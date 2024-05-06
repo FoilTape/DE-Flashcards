@@ -55,10 +55,11 @@ body {
 }
 
 .card-back {
+    background-color: #FFF; /* You can customize this */
     transform: rotateY(180deg);
-    background: #FFF; /* Adjust as needed */
-    padding: 20px;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .card.flip .card-inner {
