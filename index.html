@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,16 +12,23 @@
     <button onclick="setLanguage('en')">🇺🇸 English</button>
 </div>
 <div class="card">
-    <div class="card-header">
-        <div class="star" onclick="handleStarClick()">&#9734;</div>
-        <div class="language-flag" id="languageFlag">🇩🇪</div>
-    </div>
-    <div class="card-body" onclick="flipCard()">
-        <p id="wordText">Loading...</p>
+    <div class="card-inner" onclick="flipCard()">
+        <div class="card-front">
+            <div class="card-header">
+                <div class="star" onclick="handleStarClick(event)">&#9734;</div>
+                <div class="language-flag" id="languageFlag">🇩🇪</div>
+            </div>
+            <div class="card-body">
+                <p id="wordText">Loading...</p>
+            </div>
+        </div>
+        <div class="card-back">
+            <!-- Content for the back of the card -->
+        </div>
     </div>
     <div class="card-footer">
-        <button onclick="previousCard()">&lt; Previous</button>
-        <button onclick="nextCard()">Next &gt;</button>
+        <button onclick="previousCard()">Previous</button>
+        <button onclick="nextCard()">Next</button>
     </div>
 </div>
 <script src="script.js"></script>
