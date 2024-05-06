@@ -8,23 +8,14 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(response => response.json())
         .then(data => {
             words = data;
-            displayWord();
-            updateStar();
+            updateDisplay();
         });
 });
 
-function setLanguage(lang) {
-    currentLanguage = lang;
-    displayWord();
-}
-
-function displayWord() {
-    const cardBody = document.querySelector('.card-body');
+function updateDisplay() {
     const wordElement = document.getElementById('wordText');
     const flagElement = document.getElementById('languageFlag');
     const word = words[currentIndex];
-
-    cardBody.classList.remove('flip'); // Reset flip animation
 
     if (currentLanguage === 'de') {
         wordElement.textContent = word.german;
@@ -33,44 +24,44 @@ function displayWord() {
         wordElement.textContent = word.english;
         flagElement.textContent = '🇺🇸';
     }
-    setTimeout(() => cardBody.classList.add('flip'), 100); // Add flip animation
+    resetCardState();
 }
 
 function nextCard() {
-    if (shownIndices.length === words.length) {
-        shownIndices = [];
-    }
-    let nextIndex;
+    if (shownIndices.length === words.length) shownIndices = [];
     do {
-        nextIndex = Math.floor(Math.random() * words.length);
-    } while (shownIndices.includes(nextIndex));
-    shownIndices.push(nextIndex);
-    currentIndex = nextIndex;
-    displayWord();
-    updateStar();
+        currentIndex = Math.floor(Math.random() * words.length);
+    } while (shownIndices.includes(currentIndex));
+    shownIndices.push(currentIndex);
+    updateDisplay();
 }
 
 function previousCard() {
     if (shownIndices.length > 1) {
-        shownIndices.pop(); // Remove the last shown index
-        currentIndex = shownIndices[shownIndices.length - 1]; // Move to the previous index
-        displayWord();
-        updateStar();
+        shownIndices.pop();
+        currentIndex = shownIndices[shownIndices.length - 1];
+        updateDisplay();
     }
 }
 
-function handleStarClick() {
-    const starElement = document.querySelector('.star');
+function handleStarClick(event) {
+    event.stopPropagation(); // Prevent card flip when clicking star
     words[currentIndex].count = (words[currentIndex].count || 0) + 1;
     updateStar();
-    nextCard();
-}
-
-function updateStar() {
-    const starElement = document.querySelector('.star');
-    starElement.textContent = words[currentIndex].count > 0 ? `⭐ ${words[currentIndex].count}` : '☆';
 }
 
 function flipCard() {
-    setLanguage(currentLanguage === 'de' ? 'en' : 'de');
+    const card = document.querySelector('.card');
+    card.classList.toggle('flip');
+}
+
+function resetCardState() {
+    const starElement = document.querySelector('.star');
+    starElement.textContent = words[currentIndex].count > 0 ? `⭐ ${words[currentIndex].count}` : '☆';
+    document.querySelector('.card').classList.remove('flip'); // Reset flip state on new card
+}
+
+function setLanguage(lang) {
+    currentLanguage = lang;
+    updateDisplay();
 }
