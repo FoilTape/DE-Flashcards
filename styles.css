@@ -1,0 +1,63 @@
+
+body {
+    font-family: 'Arial Rounded MT Bold', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+}
+
+.language-picker {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+}
+
+.language-picker button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.star {
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.star:active {
+    transform: scale(1.5);
+}
+
+.card-body {
+    cursor: pointer;
+}
+
+.card-footer button {
+    margin: 10px;
+    padding: 5px 20px;
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}

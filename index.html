@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles.css">
+<title>German Nouns Learning Tool</title>
+</head>
+<body>
+<div class="language-picker">
+    <button onclick="setLanguage('de')">🇩🇪 German</button>
+    <button onclick="setLanguage('en')">🇺🇸 English</button>
+</div>
+<div class="card">
+    <div class="card-header">
+        <div class="star" onclick="handleStarClick()">&#9734;</div>
+        <div class="language-flag" id="languageFlag">🇩🇪</div>
+    </div>
+    <div class="card-body" onclick="flipCard()">
+        <p id="wordText">Loading...</p>
+    </div>
+    <div class="card-footer">
+        <button onclick="previousCard()">&lt; Previous</button>
+        <button onclick="nextCard()">Next &gt;</button>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
