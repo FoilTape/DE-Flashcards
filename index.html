@@ -11,19 +11,21 @@
     <button onclick="setLanguage('de')">🇩🇪 German</button>
     <button onclick="setLanguage('en')">🇺🇸 English</button>
 </div>
-<div class="card">
-    <div class="card-inner" onclick="flipCard()">
-        <div class="card-front">
-            <div class="card-header">
-                <div class="star" onclick="handleStarClick(event)">&#9734;</div>
-                <div class="language-flag" id="languageFlag">🇩🇪</div>
+<div class="card-container">
+    <div class="card">
+        <div class="card-inner" onclick="flipCard()">
+            <div class="card-front">
+                <div class="card-header">
+                    <div class="star" onclick="handleStarClick(event)">&#9734;</div>
+                    <div class="language-flag" id="languageFlag">🇩🇪</div>
+                </div>
+                <div class="card-body">
+                    <p id="wordText">Loading...</p>
+                </div>
             </div>
-            <div class="card-body">
-                <p id="wordText">Loading...</p>
+            <div class="card-back">
+                <p id="translationText">Translation...</p>
             </div>
-        </div>
-        <div class="card-back">
-            <!-- Content for the back of the card -->
         </div>
     </div>
     <div class="card-footer">
