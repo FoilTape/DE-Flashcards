@@ -19,14 +19,17 @@ function setLanguage(lang) {
 
 function updateDisplay() {
     const wordElement = document.getElementById('wordText');
+    const translationElement = document.getElementById('translationText');
     const flagElement = document.getElementById('languageFlag');
     const word = words[currentIndex];
 
     if (currentLanguage === 'de') {
         wordElement.textContent = word.german;
+        translationElement.textContent = word.english;
         flagElement.textContent = '🇩🇪';
     } else {
         wordElement.textContent = word.english;
+        translationElement.textContent = word.german;
         flagElement.textContent = '🇺🇸';
     }
     resetCardState();
@@ -55,33 +58,17 @@ function handleStarClick(event) {
     updateStar();
 }
 
+function flipCard() {
+    const cardInner = document.querySelector('.card-inner');
+    cardInner.classList.toggle('flip');
+}
+
 function updateStar() {
     const starElement = document.querySelector('.star');
     starElement.textContent = words[currentIndex].count > 0 ? `⭐ ${words[currentIndex].count}` : '☆';
 }
 
-function flipCard() {
-    const card = document.querySelector('.card-inner');
-    const flagElement = document.getElementById('languageFlag');
-    const wordElement = document.getElementById('wordText');
-    const translationElement = document.getElementById('translationText');
-    const word = words[currentIndex];
-
-    card.classList.toggle('flip');
-
-    if (card.classList.contains('flip')) {
-        // Showing translation
-        translationElement.textContent = currentLanguage === 'de' ? word.english : word.german;
-        flagElement.textContent = currentLanguage === 'de' ? '🇺🇸' : '🇩🇪';
-    } else {
-        // Showing original word
-        wordElement.textContent = currentLanguage === 'de' ? word.german : word.english;
-        flagElement.textContent = currentLanguage === 'de' ? '🇩🇪' : '🇺🇸';
-    }
-}
-
 function resetCardState() {
-    const starElement = document.querySelector('.star');
-    starElement.textContent = words[currentIndex].count > 0 ? `⭐ ${words[currentIndex].count}` : '☆';
-    document.querySelector('.card-inner').classList.remove('flip'); // Reset flip state on new card
+    const cardInner = document.querySelector('.card-inner');
+    cardInner.classList.remove('flip'); // Reset flip state on new card
 }
